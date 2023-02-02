@@ -1,25 +1,14 @@
 import hg
 import functools
-from libsmoother import Quarry
 import clodius.tiles.format as hgfo
 import numpy as np
 import os
 import json
+from .quarry_by_path import get_quarry
+from .synchronized import synchronized
 
 BINS_PER_TILE = 256 # this seems to be a fixed value that cannot be changed
-global quarry_by_path 
-quarry_by_path = {}
 
-def get_quarry(filepath: str):
-    if filepath not in quarry_by_path:
-        quarry_by_path[filepath] = Quarry(filepath)
-
-        if quarry_by_path[filepath].get_value(["settings"]) is None:
-            with open('default.json', 'r') as f:
-                settings = json.load(f)
-            quarry_by_path[filepath].set_value(["settings"], settings)
-
-    return quarry_by_path[filepath]
 
 def gen_resolutions(base_resolution, genome_size, f=2):
     ret = []
@@ -65,9 +54,16 @@ def tileset_info(filepath):
         ],
         'chromsizes': [
             ["AAA", canvas_size_x * min_resolution + 1]
-        ]
+        ],
+        "mirror_tiles": "false" # @todo this should autoset based on the mirroring strategy...
     }
 
+
+# @todo quarry should be able to spawn several objects that can be run consecutiveley
+# for this the index should be shared between them and synchronize if the underlying datastructures are not threadsave
+# quarry should then manage a list of "renderers" which are reused.
+# new renderers should be added to the list if non are available
+@synchronized
 def make_tile(
     quarry,
     resolution,
@@ -93,11 +89,14 @@ def make_tile(
     """
     # make sure settings are correct
     quarry.set_value(["settings", "interface", "fixed_number_of_bins"], True)
+    quarry.set_value(["settings", "filters", "incomplete_alignments"], True)
+    quarry.set_value(["settings", "interface", "add_draw_area", "val"], 0)
+    quarry.set_value(["settings", "filters", "cut_off_bin"], "fit_chrom_larger")
     quarry.set_value(["settings", "interface", "fixed_num_bins_x", "val"], BINS_PER_TILE)
     quarry.set_value(["settings", "interface", "fixed_num_bins_y", "val"], BINS_PER_TILE)
 
-    min_resolution = quarry.get_value(["dividend"])
     # set current region
+    min_resolution = quarry.get_value(["dividend"])
     tile_size = resolution * BINS_PER_TILE // min_resolution
     
     quarry.set_value(["area"], {
@@ -107,9 +106,6 @@ def make_tile(
         "y_end": (y_pos + 1) * tile_size,
     })
 
-    print("querying", resolution, x_pos, y_pos, quarry.get_value(["area"]))
-
-    #quarry.update_cds()
     values = quarry.get_divided()
     size_x = quarry.get_axis_size(True)
     size_y = quarry.get_axis_size(False)
@@ -117,8 +113,8 @@ def make_tile(
     out = np.ones((BINS_PER_TILE, BINS_PER_TILE), dtype=np.float32)
     for i in range(BINS_PER_TILE):
         for j in range(BINS_PER_TILE):
-            idx = i * size_x + j
-            out[i,j] = values[idx] if idx < len(values) else 0
+            idx = j * size_y + i
+            out[i,j] = values[idx] if i < size_y and j < size_x else 0
 
     return out.ravel()
 
