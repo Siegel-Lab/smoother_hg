@@ -1,2 +1,2 @@
-from ._widgets import *
+from .settings import *
 from .tileset import *

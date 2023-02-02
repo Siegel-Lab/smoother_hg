@@ -8,7 +8,7 @@ def update_setting(filepath, widget, view, setting, value):
     # @todo update should be replaced with a better way to rerender the server...
     widget.reload(view.uid)
 
-def widgets(filepath, widget, view):
+def default_gui(filepath, widget, view):
     def update_setting_local(setting, value):
         update_setting(filepath, widget, view, setting, value)
 
