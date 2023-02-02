@@ -3,24 +3,27 @@ from .quarry_by_path import get_quarry_unsync
 from .synchronized import synchronized
 
 @synchronized
-def update_setting(filepath, setting, value):
+def update_setting(filepath, widget, view, setting, value):
     get_quarry_unsync(filepath).set_value(setting, value)
     # @todo update should be replaced with a better way to rerender the server...
-    view.update()
+    widget.reload(view.uid)
 
-def widgets(filepath, view):
+def widgets(filepath, widget, view):
+    def update_setting_local(setting, value):
+        update_setting(filepath, widget, view, setting, value)
+
     def map_q_val_change(change):
-        update_setting(["settings", "filters", "mapping_q", "val_min"], change['new'])
+        update_setting_local(["settings", "filters", "mapping_q", "val_min"], change['new'])
         
     def normalization_val_change(change):
         key = ["settings", "normalization", "normalize_by"]
         if change["new"] == 2:
-            update_setting(key, "hi-c")
+            update_setting_local(key, "hi-c")
         elif change["new"] == 1:
-            update_setting(key, "dont")
+            update_setting_local(key, "dont")
         
     def ddd_val_change(change):
-        update_setting(["settings", "normalization", "normalize_by", "ddd"], change['new'])
+        update_setting_local(["settings", "normalization", "normalize_by", "ddd"], change['new'])
 
     mapping_quality = ipywidgets.IntSlider(max=256, continuous_update=False)
     mapping_quality.observe(map_q_val_change, names='value')

@@ -4,10 +4,8 @@ import clodius.tiles.format as hgfo
 import numpy as np
 import os
 import json
-from .quarry_by_path import get_quarry
+from .quarry_by_path import get_quarry, BINS_PER_TILE
 from .synchronized import synchronized
-
-BINS_PER_TILE = 256 # this seems to be a fixed value that cannot be changed
 
 
 def gen_resolutions(base_resolution, genome_size, f=2):
@@ -91,7 +89,7 @@ def make_tile(
     quarry.set_value(["settings", "interface", "fixed_number_of_bins"], True)
     quarry.set_value(["settings", "filters", "incomplete_alignments"], True)
     quarry.set_value(["settings", "interface", "add_draw_area", "val"], 0)
-    quarry.set_value(["settings", "filters", "cut_off_bin"], "fit_chrom_larger")
+    quarry.set_value(["settings", "filters", "cut_off_bin"], "cover_multiple")
     quarry.set_value(["settings", "interface", "fixed_num_bins_x", "val"], BINS_PER_TILE)
     quarry.set_value(["settings", "interface", "fixed_num_bins_y", "val"], BINS_PER_TILE)
 
@@ -135,6 +133,7 @@ def tiles(filepath, tile_ids):
     generated_tiles: [(tile_id, tile_data),...]
         A list of tile_id, tile_data tuples
     """
+    print("XXXXX")
     quarry = get_quarry(filepath)
     resolutions = resolutions_from_quarry(quarry)
 
