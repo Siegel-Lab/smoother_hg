@@ -108,6 +108,7 @@ def make_tile(
     size_x = quarry.get_axis_size(True)
     size_y = quarry.get_axis_size(False)
 
+    # @todo this can be done better
     out = np.ones((BINS_PER_TILE, BINS_PER_TILE), dtype=np.float32)
     for i in range(BINS_PER_TILE):
         for j in range(BINS_PER_TILE):
@@ -133,7 +134,6 @@ def tiles(filepath, tile_ids):
     generated_tiles: [(tile_id, tile_data),...]
         A list of tile_id, tile_data tuples
     """
-    print("XXXXX")
     quarry = get_quarry(filepath)
     resolutions = resolutions_from_quarry(quarry)
 
