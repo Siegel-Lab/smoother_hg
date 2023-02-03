@@ -1,5 +1,7 @@
 from distutils.core import setup
 
+# @todo move into smoother
+
 setup(
     name="smoother_hg",
     version="0.1.0",

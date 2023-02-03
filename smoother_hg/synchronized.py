@@ -5,7 +5,8 @@ global lock
 lock = threading.Lock()
 
 def synchronized(func):
-    ''' This decorator limits the number of simultaneous Threads
+    ''' 
+    This decorator limits the number of simultaneous Threads to one
     '''
     def wrapped(*args):
         with lock:

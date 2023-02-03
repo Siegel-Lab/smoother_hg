@@ -1,14 +1,18 @@
 import ipywidgets
-from .quarry_by_path import get_quarry_unsync
+from .quarry_by_path import get_quarry
 from .synchronized import synchronized
+from typing import Any, List
+from higlass_widget.widget import HiGlassWidget
+from hg.api import View
 
 @synchronized
-def update_setting(filepath, widget, view, setting, value):
-    get_quarry_unsync(filepath).set_value(setting, value)
-    # @todo update should be replaced with a better way to rerender the server...
+def update_setting(filepath: str, widget: HiGlassWidget, view: View, setting: List[str], value: Any):
+    get_quarry(filepath).set_value(setting, value)
     widget.reload(view.uid)
 
-def default_gui(filepath, widget, view):
+
+
+def default_gui(filepath: str, widget: HiGlassWidget, view: View):
     def update_setting_local(setting, value):
         update_setting(filepath, widget, view, setting, value)
 
