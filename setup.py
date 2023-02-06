@@ -24,6 +24,6 @@ setup(
     install_requires=[
         'libsmoother @ git+https://github.com/Siegel-Lab/libSmoother',
         'hg @ git+https://github.com/manzt/hg.git@77986811fb7103fde1da97058c2e407989b4f31c',
-        "jupyterlab-widgets>=3.0.5"
+        "ipywidgets>=7.7.2"
     ]
 )
