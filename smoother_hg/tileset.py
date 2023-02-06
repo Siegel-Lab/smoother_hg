@@ -96,6 +96,7 @@ def __make_tile(
     data_by_tilepos: {(x_pos, y_pos) : np.array}
         A dictionary of tile data indexed by tile positions
     """
+    print("XXX", quarry.get_value(["settings"]))
     # set region to be rendered
     min_resolution = quarry.get_value(["dividend"])
     tile_size = resolution * BINS_PER_TILE // min_resolution

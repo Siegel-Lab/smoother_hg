@@ -1,5 +1,12 @@
 from libsmoother import Quarry
 import logging
+try:
+    import importlib.resources as pkg_resources
+except ImportError:
+    # Try backported to PY<37 `importlib_resources`.
+    import importlib_resources as pkg_resources
+from . import data
+import json
 
 """
 higlass tiles are always 256x256 pixels
@@ -18,7 +25,7 @@ def __apply_necessary_hg_settings(quarry: Quarry):
 
     # if settings is empty store the default settings there
     if quarry.get_value(["settings"]) is None:
-        with open('default.json', 'r') as f:
+        with pkg_resources.open_text(data, "default.json") as f:
             settings = json.load(f)
         quarry.set_value(["settings"], settings)
 
@@ -46,6 +53,8 @@ def __apply_necessary_hg_settings(quarry: Quarry):
     # do not filter out incomplete alignments by default (this is not strictly necessary)
     quarry.set_value(["settings", "filters", "incomplete_alignments"], True)
 
+    return quarry
+
 """
 Global dictionary to cache the loaded libSmoother.Quarry objects
 """
@@ -71,8 +80,7 @@ def get_quarry(filepath: str):
     A libsmoother.Quarry object.
     """
     if filepath not in __quarry_by_path:
-        __quarry_by_path[filepath] = Quarry(filepath)
-        __apply_necessary_hg_settings(__quarry_by_path[filepath])
+        __quarry_by_path[filepath] = __apply_necessary_hg_settings(Quarry(filepath))
 
     return __quarry_by_path[filepath]
 

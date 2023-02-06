@@ -11,6 +11,7 @@ setup(
     long_description="",
     packages=["smoother_hg"],
     extras_require={"test": "pytest"},
+    data_files=[("data", ["data/default.json"])],
     zip_safe=False,
     python_requires=">=3.5",
     classifiers=[
@@ -24,6 +25,7 @@ setup(
     install_requires=[
         'libsmoother @ git+https://github.com/Siegel-Lab/libSmoother',
         'hg @ git+https://github.com/manzt/hg.git@77986811fb7103fde1da97058c2e407989b4f31c',
-        "ipywidgets>=7.7.2"
+        "ipywidgets==7.7.2", # @todo for some reason only exactly this version works for me :(
+        "clodius>=0.19.0",
     ]
 )

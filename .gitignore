@@ -1,2 +1,6 @@
 **/__pycache__/*
 *.egg-info
+radicl.smoother_index
+micro-c.smoother_index
+radicl.smoother_index/*
+micro-c.smoother_index/*

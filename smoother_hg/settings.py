@@ -40,12 +40,12 @@ def default_gui(filepath: str, widget: HiGlassWidget, view: View):
     normalization.observe(normalization_val_change, names='value')
     normalization_box = ipywidgets.HBox([ipywidgets.Label("Normalization"), normalization])
 
-    ddd = ipywidgets.Checkbox(
-        value=False,
-        description='Remove Distance Dependant Decay',
-        disabled=False,
-        indent=False
-    )
-    ddd.observe(ddd_val_change, names='value')
+    #ddd = ipywidgets.Checkbox(
+    #    value=False,
+    #    description='Remove Distance Dependant Decay',
+    #    disabled=False,
+    #    indent=False
+    #)
+    #ddd.observe(ddd_val_change, names='value')
 
-    return ipywidgets.VBox([mapping_quality_box, normalization_box, ddd])
+    return ipywidgets.VBox([mapping_quality_box, normalization_box]) # , ddd
