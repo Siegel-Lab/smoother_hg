@@ -1,14 +1,12 @@
 from distutils.core import setup
 
-# @todo move into smoother
-
 setup(
     name="smoother_hg",
     version="0.1.0",
     author='Markus Schmidt',
     author_email='markus.rainer.schmidt@gmail.com',
     license='MIT',
-    url='https://github.com/MarkusRainerSchmidt/smoother_hg',
+    url='https://github.com/Siegel-Lab/smoother_hg',
     description="integration of hg and libsmoother",
     long_description="",
     packages=["smoother_hg"],
@@ -24,7 +22,7 @@ setup(
         'Programming Language :: Python :: 3.6',
     ],
     install_requires=[
-        'libsmoother', # @todo turn into git+https://github.com/bla/bla/bla
-        'hg', # @todo turn into git+https://github.com/bla/bla/bla
+        'libsmoother @ git+https://github.com/Siegel-Lab/libSmoother',
+        'hg @ git+https://github.com/manzt/hg',
     ]
 )
