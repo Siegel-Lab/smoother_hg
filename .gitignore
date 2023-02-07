@@ -2,6 +2,8 @@
 *.egg-info
 radicl.smoother_index
 micro-c.smoother_index
+radicl.smoother_index.zip
+micro-c.smoother_index.zip
 radicl.smoother_index/*
 micro-c.smoother_index/*
 .ipynb_checkpoints/*
