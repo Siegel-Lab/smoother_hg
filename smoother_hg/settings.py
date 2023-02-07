@@ -27,7 +27,7 @@ def default_gui(filepath: str, widget: HiGlassWidget, view: View):
             update_setting_local(key, "dont")
         
     def ddd_val_change(change):
-        update_setting_local(["settings", "normalization", "normalize_by", "ddd"], change['new'])
+        update_setting_local(['settings', 'normalization', 'ddd'], change['new'])
 
     mapping_quality = ipywidgets.IntSlider(max=256, continuous_update=False)
     mapping_quality.observe(map_q_val_change, names='value')
@@ -48,4 +48,4 @@ def default_gui(filepath: str, widget: HiGlassWidget, view: View):
     #)
     #ddd.observe(ddd_val_change, names='value')
 
-    return ipywidgets.VBox([mapping_quality_box, normalization_box]) # , ddd
+    return ipywidgets.VBox([mapping_quality_box, normalization_box]) #, ddd])
