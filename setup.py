@@ -1,7 +1,6 @@
 from distutils.core import setup
 
-with open("VERSION", "r") as in_file:
-    VERSION = in_file.readline()
+VERSION = "0.1.0"
 
 setup(
     name="smoother_hg",
