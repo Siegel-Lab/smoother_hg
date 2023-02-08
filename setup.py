@@ -1,8 +1,11 @@
 from distutils.core import setup
 
+with open("VERSION", "r") as in_file:
+    VERSION = in_file.readline()
+
 setup(
     name="smoother_hg",
-    version="0.1.0",
+    version=VERSION,
     author='Markus Schmidt',
     author_email='markus.rainer.schmidt@gmail.com',
     license='MIT',
