@@ -16,7 +16,7 @@ Install smoother_hg (and all requirements) from GitHub.
 ```
 git clone https://github.com/Siegel-Lab/smoother_hg.git
 cd smoother_hg
-pip install -e . --no-binary libsps,libsmoothers
+pip install -e . --no-binary libsps,libsmoother
 ```
 
 Download 2 example smoother indices.
