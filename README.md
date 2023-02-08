@@ -20,6 +20,9 @@ Install smoother_hg (and all requirements) from GitHub.
 git clone https://github.com/Siegel-Lab/smoother_hg.git
 cd smoother_hg
 pip install -e . --no-binary libsps,libsmoother
+
+# hg only works with numpy<=1.23.0 for now...
+pip install numpy==1.23.0
 ```
 
 Download 2 example smoother indices.
