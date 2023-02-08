@@ -6,10 +6,10 @@ This package allows opening smoother indices in HiGlass.
 
 create & activate a new environment (optional)
 ```
-conda create -y -n smoother_hg python=3.8 pip<23.1
+conda create -y -n smoother_hg python=3.8
 conda activate smoother_hg
 # make sure the proper compiler is installed
-conda install gcc=9.4.0 gxx=9.4.0 -c conda-forge
+conda install -y gcc=9.4.0 gxx=9.4.0 -c conda-forge
 ```
 
 Install smoother_hg (and all requirements) from GitHub.
