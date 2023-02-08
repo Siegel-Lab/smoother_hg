@@ -2,6 +2,9 @@
 
 This package allows opening smoother indices in HiGlass.
 
+- [Smoother's GitHub](https://github.com/Siegel-Lab/Smoother "go to smoother's github") 
+- [hg's GitHub](https://github.com/manzt/hg "go to hg's github") 
+
 ## Quickstart: 
 
 create & activate a new environment (optional)
