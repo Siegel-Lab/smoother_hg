@@ -24,7 +24,7 @@ def __apply_necessary_hg_settings(quarry: Quarry):
 
     # if settings is empty store the default settings there
     if quarry.get_value(["settings"]) is None:
-        with pkg_resources.open_text(data, "default.json") as f:
+        with pkg_resources.open_text("data", "default.json") as f:
             settings = json.load(f)
         quarry.set_value(["settings"], settings)
 

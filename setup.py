@@ -25,7 +25,7 @@ setup(
         'Programming Language :: Python :: 3.6',
     ],
     install_requires=[
-        'libsmoother @ git+https://github.com/Siegel-Lab/libSmoother',
+        'libsmoother @ git+https://github.com/Siegel-Lab/libSmoother@stable-latest',
         'hg @ git+https://github.com/manzt/hg.git@77986811fb7103fde1da97058c2e407989b4f31c',
         "ipywidgets==7.7.2", # @todo for some reason only exactly this version works for me :(
         "clodius>=0.19.0",
