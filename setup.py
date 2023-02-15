@@ -15,14 +15,14 @@ setup(
     extras_require={"test": "pytest"},
     data_files=[("smoother_hg_data", ["data/default.json"])],
     zip_safe=False,
-    python_requires=">=3.5",
+    python_requires=">=3.9",
     classifiers=[
         'Development Status :: 3 - Alpha',
         'Intended Audience :: Science/Research',
         'License :: MIT License',
         'Operating System :: POSIX :: Linux',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.9',
     ],
     install_requires=[
         'libsmoother @ git+https://github.com/Siegel-Lab/libSmoother@stable-latest',
