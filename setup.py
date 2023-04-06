@@ -13,7 +13,7 @@ setup(
     long_description="",
     packages=["smoother_hg"],
     extras_require={"test": "pytest"},
-    data_files=[("smoother_hg_data", ["data/default.json"])],
+    data_files=[("smoother_hg", ["data/default.json"])],
     zip_safe=False,
     python_requires=">=3.9",
     classifiers=[

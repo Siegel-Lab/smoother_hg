@@ -22,7 +22,7 @@ def default_gui(filepath: str, widget: HiGlassWidget, view: View):
     def normalization_val_change(change):
         key = ["settings", "normalization", "normalize_by"]
         if change["new"] == 2:
-            update_setting_local(key, "hi-c")
+            update_setting_local(key, "ice")
         elif change["new"] == 1:
             update_setting_local(key, "dont")
         

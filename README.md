@@ -14,7 +14,7 @@ prerequisites:
 \
 create & activate a new conda environment (optional)
 ```
-conda create -y -n smoother_hg python=3.8
+conda create -y -n smoother_hg python=3.9
 conda activate smoother_hg
 ```
 
@@ -36,7 +36,7 @@ pip install numpy==1.23.0
 
 Download 2 example smoother indices.
 ```
-wget https://syncandshare.lrz.de/dl/fiFPBw32Rc3cJs1qfsYkKa/radicl.smoother_index.zip
+wget https://syncandshare.lrz.de/dl/fi5sGd6q7mvegdzMfqjT4Y/radicl.smoother_index.zip
 wget https://syncandshare.lrz.de/dl/fi8q6iroKx49azsZLHxeYB/micro-c.smoother_index.zip
 
 conda install -y unzip

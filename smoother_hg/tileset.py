@@ -29,7 +29,7 @@ def __resolutions_from_quarry(quarry: Quarry):
     Takes a libSmoother.Quarry object and returns a set of resolutions that can be deplayed by the object
     """
     min_resolution = quarry.get_value(["dividend"])
-    canvas_size_x, canvas_size_y = quarry.get_canvas_size()
+    canvas_size_x, canvas_size_y = quarry.get_canvas_size(lambda s: None)
     genome_size = max(canvas_size_x, canvas_size_y) * min_resolution
     return __gen_resolutions(min_resolution, genome_size)
 
@@ -51,7 +51,7 @@ def tileset_info(filepath: str):
     min_resolution = quarry.get_value(["dividend"])
 
     # get canvas size (which is given as a factor of the minimal resolution)
-    canvas_size_x, canvas_size_y = quarry.get_canvas_size()
+    canvas_size_x, canvas_size_y = quarry.get_canvas_size(lambda s: None)
 
     return {
         "resolutions": tuple(__resolutions_from_quarry(quarry)),
@@ -107,9 +107,9 @@ def __make_tile(
     })
 
     # quarry data from libSmoother
-    values = quarry.get_divided()
-    size_x = quarry.get_axis_size(True)
-    size_y = quarry.get_axis_size(False)
+    values = quarry.get_combined(lambda s: None)
+    size_x = quarry.get_axis_size(True, lambda s: None)
+    size_y = quarry.get_axis_size(False, lambda s: None)
 
     # @todo this can be done better
     out = np.ones((BINS_PER_TILE, BINS_PER_TILE), dtype=np.float32)
